@@ -21,7 +21,7 @@ export const AdminSideBardItems:MenuProps['items']=[
       children:[
         {
             key: '2-1',
-            label: <NavLink to="/product">Products</NavLink>,
+            label: <NavLink to="/admin/all-product">Products</NavLink>,
         },
         {
             key: 'add-product',

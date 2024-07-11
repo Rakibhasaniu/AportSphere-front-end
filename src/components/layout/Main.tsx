@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import  { useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
+  
 } from '@ant-design/icons';
-import { Button, Layout, Menu, MenuProps } from 'antd';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Button, Layout, Menu } from 'antd';
+import {  Outlet } from 'react-router-dom';
 import { AdminSideBardItems } from './AdminSideBar';
+import { ManagerSideBardItems } from './ManagerSideBar';
+import { sellerSideBardItems } from './SellerSideBar';
 
 const { Header, Sider, Content } = Layout;
 
@@ -55,6 +56,27 @@ const MainLayout = () => {
     // const {
     //   token: { colorBgContainer, borderRadiusLG },
     // } = theme.useToken();
+    const userRole = {
+      ADMIN:'admin',
+      MANAGER:'manager',
+      SELLER:'seller'
+    }
+    let sideBarItems ;
+    const role = 'seller';
+    switch (role) {
+      case userRole.ADMIN:
+          sideBarItems=AdminSideBardItems;
+        break;
+      case userRole.MANAGER:
+          sideBarItems=ManagerSideBardItems;
+        break;
+      case userRole.SELLER:
+          sideBarItems=sellerSideBardItems;
+        break;
+    
+      default:
+        break;
+    }
   
     return (
       <Layout style={{height:'100vh'}}>
@@ -66,7 +88,7 @@ const MainLayout = () => {
             theme="dark"
             mode="inline"
             defaultSelectedKeys={['1']}
-            items={AdminSideBardItems}
+            items={sideBarItems}
           />
         </Sider>
         <Layout>
