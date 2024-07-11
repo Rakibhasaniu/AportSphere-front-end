@@ -8,46 +8,47 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, MenuProps } from 'antd';
 import { NavLink, Outlet } from 'react-router-dom';
+import { AdminSideBardItems } from './AdminSideBar';
 
 const { Header, Sider, Content } = Layout;
 
-const items:MenuProps['items']=[
-    {
-      key: 'dashboard ',
-      icon: <UserOutlined />,
-      label: <NavLink to="/admin">Dashboard</NavLink>,
-    },
-    {
-      key: '2',
-      icon: <VideoCameraOutlined />,
-      label: 'Product Management',
-      children:[
-        {
-            key: '2-1',
-            label: <NavLink to="/product">Products</NavLink>,
-        },
-        {
-            key: 'add-product',
-            label: <NavLink to="/admin/add-product">Add Products</NavLink>,
-        },
-        {
-            key: '2-3',
-            label: <NavLink to="/admin/manage-product">Manage Products</NavLink>,
-        },
-        {
-          key: '4',
-          icon: <UserOutlined />,
-          label: <NavLink to="/admin/create-manager">Create Manager</NavLink>,
-      }
-      ]
-    },
-    {
-      key: '3',
-      icon: <UploadOutlined />,
-      label:  <NavLink to="/admin/sell-report">Sell Report</NavLink>,
-    },
+// const items:MenuProps['items']=[
+//     {
+//       key: 'dashboard ',
+//       icon: <UserOutlined />,
+//       label: <NavLink to="/admin">Dashboard</NavLink>,
+//     },
+//     {
+//       key: '2',
+//       icon: <VideoCameraOutlined />,
+//       label: 'Product Management',
+//       children:[
+//         {
+//             key: '2-1',
+//             label: <NavLink to="/product">Products</NavLink>,
+//         },
+//         {
+//             key: 'add-product',
+//             label: <NavLink to="/admin/add-product">Add Products</NavLink>,
+//         },
+//         {
+//             key: '2-3',
+//             label: <NavLink to="/admin/manage-product">Manage Products</NavLink>,
+//         },
+//         {
+//           key: '4',
+//           icon: <UserOutlined />,
+//           label: <NavLink to="/admin/create-manager">Create Manager</NavLink>,
+//       }
+//       ]
+//     },
+//     {
+//       key: '3',
+//       icon: <UploadOutlined />,
+//       label:  <NavLink to="/admin/sell-report">Sell Report</NavLink>,
+//     },
     
-  ]
+//   ]
 
 const MainLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -65,7 +66,7 @@ const MainLayout = () => {
             theme="dark"
             mode="inline"
             defaultSelectedKeys={['1']}
-            items={items}
+            items={AdminSideBardItems}
           />
         </Sider>
         <Layout>

@@ -11,6 +11,9 @@ import AllProducts from "../pages/product/AllProducts";
 import AddProducts from "../pages/product/AddProducts";
 import ManageProducts from "../pages/product/ManageProducts";
 import SellReport from "../pages/admin/SellReport";
+import MDashboard from "../pages/manager/MDashboard";
+import UpdateProduct from "../pages/admin/UpdateProduct";
+import SellProduct from "../pages/product/SellProduct";
 
 
 
@@ -64,6 +67,43 @@ const router = createBrowserRouter([
             {
                path:'sell-report',
                 element:<SellReport />
+            },
+        ]
+    },
+    {
+        path:'/manager',
+        element:<App />,
+        children:[
+            {
+               index:true,
+                element:<MDashboard />
+            },
+            {
+               path:'dashboard',
+                element:<MDashboard />
+            },
+            {
+               path:'update-product',
+                element:<UpdateProduct />
+            },
+            {
+               path:'all-product',
+                element:<AllProducts />
+            },
+        ]
+    },
+    {
+        path:'/seller',
+        element:<App />,
+        children:[
+            
+            {
+               path:'all-product',
+                element:<AllProducts />
+            },
+            {
+               path:'sell-product',
+                element:<SellProduct />
             },
         ]
     },
