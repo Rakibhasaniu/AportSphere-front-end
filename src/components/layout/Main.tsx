@@ -62,7 +62,7 @@ const MainLayout = () => {
       SELLER:'seller'
     }
     let sideBarItems ;
-    const role = 'seller';
+    const role = 'admin';
     switch (role) {
       case userRole.ADMIN:
           sideBarItems=AdminSideBardItems;
