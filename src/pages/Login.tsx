@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "antd";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
-import { setUser } from "../redux/features/auth/authSlice";
+import { setUser, Tuser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import {  useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -22,8 +22,8 @@ const Login = () => {
     const [login,{error}] = useLoginMutation();
     // console.log(data)
     // console.log(error)
-    const onSubmit = async(data:any) => {
-        toast.loading('Loging In..')
+    const onSubmit = async(data:FieldValues) => {
+        const toastId = toast.loading('Loging In..')
         try{
             const userInfo = {
                 email:data.email,
@@ -32,12 +32,14 @@ const Login = () => {
             // console.log(userInfo)
             const res = await login(userInfo).unwrap();
             // console.log(res)
-            const user = verifyToken(res.data.accessToken)
-            console.log(user)
+            const user = verifyToken(res.data.accessToken) as Tuser;
+            // console.log(user)
             dispatch(setUser({user:user,token:res.data.accessToken}))
+            toast.success('Loged In.',{id:toastId, duration:2000})
             navigate(`/${user.role}/dashboard`)
         } catch(err){
             console.log(err)
+            toast.error("Can't login",{id:toastId,duration:2000})
         }
     }
     return (
