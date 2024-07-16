@@ -7,9 +7,11 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu } from 'antd';
 import {  Outlet } from 'react-router-dom';
-import { AdminSideBardItems } from './AdminSideBar';
-import { ManagerSideBardItems } from './ManagerSideBar';
-import { sellerSideBardItems } from './SellerSideBar';
+import { AdminSideBardItems } from '../../utils/AdminSideBar';
+import { ManagerSideBardItems } from '../../utils/ManagerSideBar';
+import { sellerSideBardItems } from '../../utils/SellerSideBar';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { currentToken, currentUser, logout } from '../../redux/features/auth/authSlice';
 
 const { Header, Sider, Content } = Layout;
 
@@ -56,6 +58,9 @@ const MainLayout = () => {
     // const {
     //   token: { colorBgContainer, borderRadiusLG },
     // } = theme.useToken();
+    const user = useAppSelector(currentToken)
+    const dispatch = useAppDispatch();
+    // console.log(user)
     const userRole = {
       ADMIN:'admin',
       MANAGER:'manager',
@@ -77,6 +82,10 @@ const MainLayout = () => {
       default:
         break;
     }
+
+    const handleLogout = () => {
+      dispatch(logout())
+    } 
   
     return (
       <Layout style={{height:'100vh'}}>
@@ -106,8 +115,11 @@ const MainLayout = () => {
               }}
             />
             {/* <div style={{display:'flex',justifyContent:'space-evenly'}}> */}
+            {
+              user? <Button onClick={handleLogout} style={{marginLeft:'1100px'}}>LogOut</Button> : <Button style={{marginLeft:'1100px'}}>LogIn</Button>
+            }
 
-            <Button style={{marginLeft:'1180px'}}>LogIn</Button>
+            {/* <Button style={{marginLeft:'1100px'}}>LogIn</Button> */}
             {/* </div> */}
           </Header>
           <Content
