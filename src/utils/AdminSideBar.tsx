@@ -35,6 +35,11 @@ export const AdminSideBardItems:MenuProps['items']=[
           key: '4',
           icon: <UserOutlined />,
           label: <NavLink to="/admin/create-manager">Create Manager</NavLink>,
+      },
+        {
+          key: '5',
+          icon: <UserOutlined />,
+          label: <NavLink to="/admin/all-sales">All Sales</NavLink>,
       }
       ]
     },

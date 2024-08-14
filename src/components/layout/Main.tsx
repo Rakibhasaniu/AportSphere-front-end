@@ -58,17 +58,17 @@ const MainLayout = () => {
     // const {
     //   token: { colorBgContainer, borderRadiusLG },
     // } = theme.useToken();
-    const user = useAppSelector(currentToken)
+    const user = useAppSelector(currentUser)
     const dispatch = useAppDispatch();
-    // console.log(user)
+    console.log(user)
     const userRole = {
       ADMIN:'admin',
       MANAGER:'manager',
       SELLER:'seller'
     }
     let sideBarItems ;
-    const role = 'admin';
-    switch (role) {
+    // const role = 'admin';
+    switch (user!.role) {
       case userRole.ADMIN:
           sideBarItems=AdminSideBardItems;
         break;

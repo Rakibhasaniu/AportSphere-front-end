@@ -2,6 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
 export type Tuser = {
+    SELLER: any;
+    MANAGER: any;
+    ADMIN: any;
     role:string
     email:string
     iat:number

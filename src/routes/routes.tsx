@@ -14,6 +14,7 @@ import SellReport from "../pages/admin/SellReport";
 import MDashboard from "../pages/manager/MDashboard";
 import UpdateProduct from "../pages/admin/UpdateProduct";
 import SellProduct from "../pages/product/SellProduct";
+import GetAllSales from "../pages/admin/GetAllSales";
 
 
 
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
             {
                path:'all-product',
                 element:<AllProducts />
+            },
+            {
+               path:'all-sales',
+                element:<GetAllSales />
             },
         ]
     },

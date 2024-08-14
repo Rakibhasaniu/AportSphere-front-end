@@ -1,6 +1,9 @@
-import React from 'react';
+import { useGetSalesQuery } from "../../redux/features/sales/salesApi";
 
-const getAllSales = () => {
+const GetAllSales = () => {
+
+    const {data} = useGetSalesQuery(undefined);
+    console.log(data);
     return (
         <div>
             
@@ -8,4 +11,4 @@ const getAllSales = () => {
     );
 };
 
-export default getAllSales;
+export default GetAllSales;
