@@ -14,13 +14,16 @@ const baseQuery =  fetchBaseQuery({
 })
 
 
-const baseQueryWithRefreshToken = async(args, api, extraOptions) => {
-    const result = await baseQuery(args,api,extraOptions)
-}
+// const baseQueryWithRefreshToken = async(args, api, extraOptions) => {
+//     const result = await baseQuery(args,api,extraOptions)
+//     if(result.error?.status === 401){
+//         const refreshToken = (extraOptions.getState() as RootState).auth.
+//     }
+// }
 
 export const baseApi = createApi({
     reducerPath:'baseApi',
-    baseQuery:baseQueryWithRefreshToken,
+    baseQuery:baseQuery,
     endpoints:() => ({
         // loginUser:builder.mutation({
         //     query:(userInfo)=> ({

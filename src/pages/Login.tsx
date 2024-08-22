@@ -1,28 +1,32 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "antd";
-import { FieldValues, useForm } from "react-hook-form";
+import { Button, Row } from "antd";
+import { FieldValues, useForm, useFormContext } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser, Tuser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import {  useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import FormWrapper from "../components/form/FormWrapper";
+import Input from "../components/form/PInput";
+import PInput from "../components/form/PInput";
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const {register, handleSubmit} = useForm({
-        defaultValues:{
-            email:'rakib@gmail.com',
-            password:'123456'
-        }
-    });
+    // const {register, handleSubmit} = useForm({
+    //     defaultValues:{
+    //         email:'rakib@gmail.com',
+    //         password:'123456'
+    //     }
+    // });
 
     const [login,{error}] = useLoginMutation();
     // console.log(data)
     // console.log(error)
     const onSubmit = async(data:FieldValues) => {
+        // console.log(data)
         const toastId = toast.loading('Loging In..')
         try{
             const userInfo = {
@@ -43,17 +47,20 @@ const Login = () => {
         }
     }
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label htmlFor="email">Email:</label>
-                <input type="text" id="email" {...register('email')} />
-            </div>
-            <div>
-                <label htmlFor="password">Password:</label>
-                <input type="text"  id="password" {...register('password')} />
-            </div>
+        <Row justify="center" align="middle" style={{height:'100vh'}}>
+        <FormWrapper onSubmit={onSubmit}>
+                {/* <label htmlFor="email">Email:</label> */}
+                {/* <input type="text" id="email" {...register('email')} /> */}
+                <PInput type="email"  name="email" label="Email:" />
+
+           
+                {/* <label htmlFor="password">Password:</label> */}
+                {/* <input type="text"  id="password" {...register('password')} /> */}
+                <PInput type="text" name="password"  label="Password:" />
             <Button htmlType="submit" >submit</Button>
-        </form>
+        </FormWrapper>
+        </Row>
+        
     );
 };
 
