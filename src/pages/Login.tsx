@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Row } from "antd";
-import { FieldValues, useForm, useFormContext } from "react-hook-form";
+import { FieldValues  } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser, Tuser } from "../redux/features/auth/authSlice";
@@ -9,7 +9,6 @@ import { verifyToken } from "../utils/verifyToken";
 import {  useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import FormWrapper from "../components/form/FormWrapper";
-import Input from "../components/form/PInput";
 import PInput from "../components/form/PInput";
 
 const Login = () => {
@@ -21,6 +20,11 @@ const Login = () => {
     //         password:'123456'
     //     }
     // });
+
+    const defaultValues = {
+        email: 'rakib@gmail.com',
+        password: '123456'
+    }
 
     const [login,{error}] = useLoginMutation();
     // console.log(data)
@@ -48,7 +52,7 @@ const Login = () => {
     }
     return (
         <Row justify="center" align="middle" style={{height:'100vh'}}>
-        <FormWrapper onSubmit={onSubmit}>
+        <FormWrapper onSubmit={onSubmit} defaultValues = {defaultValues} >
                 {/* <label htmlFor="email">Email:</label> */}
                 {/* <input type="text" id="email" {...register('email')} /> */}
                 <PInput type="email"  name="email" label="Email:" />

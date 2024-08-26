@@ -1,7 +1,14 @@
 import { Input } from 'antd'
 import { Controller } from 'react-hook-form'
 
-const PInput = ({type,name,label}) => {
+
+type TInput = {
+  type:string;
+  name: string;
+  label?: string;
+}
+
+const PInput = ({type,name,label}:TInput) => {
     // const {register} = useFormContext()
 
   return (
