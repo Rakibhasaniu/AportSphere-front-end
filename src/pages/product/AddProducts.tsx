@@ -3,15 +3,25 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import FormWrapper from "../../components/form/FormWrapper";
 import PInput from "../../components/form/PInput";
 import { Button, Col, Row } from "antd";
+import PSelect from "../../components/form/PSelect";
 
 const AddProducts = () => {
     const onSubmit:SubmitHandler<FieldValues> = (data) => {
         console.log(data)
     }
-    return (
-        
+    const nameOptions = [
+        {
+        value:'New',
+        label:'New',
+        },
+        {
+        value:'Used',
+        label:'Used',
+        },
 
-        
+]
+
+    return (
         <FormWrapper onSubmit={onSubmit}>
             <h1>Add Products</h1>
             <Row>
@@ -28,7 +38,9 @@ const AddProducts = () => {
       <PInput type="text" name="size" label="Size" />
       <PInput type="text" name="material" label="Material" />
             <PInput type="text" name="color" label="Color" />
-            <PInput type="text" name="condition" label="Condition" />
+            {/* <PInput type="text" name="condition" label="Condition" /> */}
+            <PSelect label="Condition" name="condition" options={nameOptions} />
+
             <PInput type="text" name="weight" label="Weight" />
       </Col>
       <Button htmlType="submit">Submit</Button>
