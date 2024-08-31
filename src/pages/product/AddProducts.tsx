@@ -4,6 +4,8 @@ import FormWrapper from "../../components/form/FormWrapper";
 import PInput from "../../components/form/PInput";
 import { Button, Col, Row } from "antd";
 import PSelect from "../../components/form/PSelect";
+import {zodResolver} from '@hookform/resolvers/zod'
+import { addProductSchema } from "../../schemas/AddProductSchema";
 
 const AddProducts = () => {
     const onSubmit:SubmitHandler<FieldValues> = (data) => {
@@ -21,8 +23,10 @@ const AddProducts = () => {
 
 ]
 
+
+
     return (
-        <FormWrapper onSubmit={onSubmit}>
+        <FormWrapper onSubmit={onSubmit} resolver={zodResolver(addProductSchema)}>
             <h1>Add Products</h1>
             <Row>
       <Col span={12}>
@@ -37,7 +41,7 @@ const AddProducts = () => {
       <Col span={12}>
       <PInput type="text" name="size" label="Size" />
       <PInput type="text" name="material" label="Material" />
-            <PInput type="text" name="color" label="Color" />
+        <PInput type="text" name="color" label="Color" />
             {/* <PInput type="text" name="condition" label="Condition" /> */}
             <PSelect label="Condition" name="condition" options={nameOptions} />
 

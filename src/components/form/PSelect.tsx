@@ -19,7 +19,8 @@ const PSelect = ({label,name,options}:TSelectProps) => {
   return (
    <Controller 
    name={name}
-   render={({field})=> (
+   render={({field, fieldState:{error}})=> (
+   
     <Form.Item label={label}>
    
     <Select
@@ -34,8 +35,10 @@ const PSelect = ({label,name,options}:TSelectProps) => {
        
       // ]}
     />
+   {/* console.log({error?.message}) */}
     
-   
+   {error && <small  style={{color:'red'}}>{error.message}</small>}
+
      </Form.Item>
    )}
    />

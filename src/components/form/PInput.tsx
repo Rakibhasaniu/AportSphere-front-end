@@ -1,4 +1,4 @@
-import { Input } from 'antd'
+import { Form, Input } from 'antd'
 import { Controller } from 'react-hook-form'
 
 
@@ -16,11 +16,21 @@ const PInput = ({type,name,label}:TInput) => {
     {label ? label : null}
          <Controller
          name={name}
-         render={({field})=>
-          <Input {...field} type={type} id={name} />
+         render={({field,fieldState:{error}})=>
+          <Form.Item>
+               <Input {...field} type={type} id={name} 
+         
+          />
+          {error && <small style={{color:'red'}}>{error.message}</small>}
+          </Form.Item>
+         
+          
+          
          }
+         
          />
-
+         
+         
     </div>
   )
 }
