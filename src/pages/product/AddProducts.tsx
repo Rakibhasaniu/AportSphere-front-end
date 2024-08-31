@@ -6,22 +6,39 @@ import { Button, Col, Row } from "antd";
 import PSelect from "../../components/form/PSelect";
 import {zodResolver} from '@hookform/resolvers/zod'
 import { addProductSchema } from "../../schemas/AddProductSchema";
-
-const AddProducts = () => {
-    const onSubmit:SubmitHandler<FieldValues> = (data) => {
-        console.log(data)
-    }
-    const nameOptions = [
-        {
-        value:'New',
-        label:'New',
-        },
-        {
-        value:'Used',
-        label:'Used',
-        },
+import { useCreateProductMutation } from "../../redux/features/product/productApi";
+const nameOptions = [
+    {
+    value:'New',
+    label:'New',
+    },
+    {
+    value:'Used',
+    label:'Used',
+    },
 
 ]
+
+const AddProducts = () => {
+
+    const [createProduct] = useCreateProductMutation()
+    const onSubmit:SubmitHandler<FieldValues> =async (data) => {
+        data.price=Number(data.price);
+        data.quantity=Number(data.quantity);
+        data.weight=Number(data.weight);
+        data.size=Number(data.size);
+        // console.log(data)
+        try {
+            const res = await createProduct(data);
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+        
+      
+        
+    }
+ 
 
 
 
