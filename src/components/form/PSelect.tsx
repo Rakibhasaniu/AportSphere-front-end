@@ -24,7 +24,7 @@ const PSelect = ({label,name,options}:TSelectProps) => {
     <Form.Item label={label}>
    
     <Select
-      defaultValue="New"
+      defaultValue=""
       style={{ width: '100%' }}
       // onChange={onChange}
       {...field}

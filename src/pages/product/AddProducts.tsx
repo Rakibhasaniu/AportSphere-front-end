@@ -7,6 +7,7 @@ import PSelect from "../../components/form/PSelect";
 import {zodResolver} from '@hookform/resolvers/zod'
 import { addProductSchema } from "../../schemas/AddProductSchema";
 import { useCreateProductMutation } from "../../redux/features/product/productApi";
+import { toast } from "sonner";
 const nameOptions = [
     {
     value:'New',
@@ -23,6 +24,8 @@ const AddProducts = () => {
 
     const [createProduct] = useCreateProductMutation()
     const onSubmit:SubmitHandler<FieldValues> =async (data) => {
+        const toastId= toast.loading('Creating product...')
+
         data.price=Number(data.price);
         data.quantity=Number(data.quantity);
         data.weight=Number(data.weight);
@@ -30,6 +33,11 @@ const AddProducts = () => {
         // console.log(data)
         try {
             const res = await createProduct(data);
+            if(res?.error){
+                toast.error(res.error.data.message,{id:toastId})
+            } else {
+                toast.success('Product Created',{id:toastId})
+            }
             console.log(res)
         } catch (error) {
             console.log(error)

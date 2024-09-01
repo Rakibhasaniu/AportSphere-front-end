@@ -60,7 +60,7 @@ const MainLayout = () => {
     // } = theme.useToken();
     const user = useAppSelector(currentUser)
     const dispatch = useAppDispatch();
-    console.log(user)
+    // console.log(user)
     const userRole = {
       ADMIN:'admin',
       MANAGER:'manager',
@@ -88,8 +88,10 @@ const MainLayout = () => {
     } 
   
     return (
-      <Layout style={{height:'100vh'}}>
-        <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Layout style={{height:'100%'
+        
+        }}>
+        <Sider style={{height:'100vh', position: 'sticky', top: '0', left: '0' }} trigger={null} collapsible collapsed={collapsed}>
           <div style={{marginTop:'20px',marginBottom:'10px'}} className="demo-logo-vertical" >
             <h1 style={{color:'whitesmoke'}} >SportSphere</h1>
           </div>
