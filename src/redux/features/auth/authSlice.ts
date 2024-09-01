@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
@@ -14,12 +15,15 @@ export type Tuser = {
 type TAuthState = {
     user:null | Tuser;
     token: null | string;
+    role:null  | string;
+
 }
 
 
 const initialState:TAuthState = {
     user:null,
-    token:null
+    token:null,
+    role:null
 }
 
 const authSlice = createSlice({

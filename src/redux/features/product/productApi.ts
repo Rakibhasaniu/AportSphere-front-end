@@ -14,11 +14,20 @@ const productApi = baseApi.injectEndpoints({
     getAllProduct: builder.query({
         query:() => ({
             url:'/product',
-            method:'GET'
+            method:'GET',
+            params:{searchTerm:'hdd'}
         })
+    }),
+    deleteProduct:builder.mutation({
+      query:(id:string)=>({
+        url:`/product/${id}`,
+        method:'DELETE',
+        // body:id
+      }),
+      // invalidatesTags: [product],
     })
     
   }),
 });
 
-export const { useGetAllProductQuery,useCreateProductMutation }:{useCreateProductMutation:any,useGetAllProductQuery:any}=productApi;
+export const { useGetAllProductQuery,useCreateProductMutation, useDeleteProductMutation }:{useCreateProductMutation:any,useGetAllProductQuery:any,useDeleteProductMutation:any}=productApi;

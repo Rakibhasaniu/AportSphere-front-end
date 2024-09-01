@@ -9,8 +9,10 @@ const salesApi = baseApi.injectEndpoints({
         url: '/sales',
         method: 'GET',
       }),
+      
     }),
   }),
+
 });
 
 export const {useGetSalesQuery}:{useGetSalesQuery:any}=salesApi;
